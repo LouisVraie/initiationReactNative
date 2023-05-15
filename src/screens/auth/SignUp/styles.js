@@ -18,5 +18,21 @@ export const styles = StyleSheet.create({
   },
   linkContainer: {
     flexDirection: 'row',
+  },
+  lineTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 38
+  },
+  line: {
+    width: 90,
+    height: 1,
+    borderColor: colors.smoke,
+    backgroundColor: colors.smoke
+  },
+  googleSignIn: {
+    width: 192,
+    height: 48,
+    marginVertical: 10
   }
 });

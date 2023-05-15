@@ -1,30 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Image, Pressable } from 'react-native';
 import { styles } from './styles';
 import check from '../../assets/check.png';
 
 export default function Input(props) {
-  const { label, children } = props;
-  const [isChecked, setIsChecked] = useState(false);
-
-  const onCheckboxPressed = () => {
-    setIsChecked(!isChecked);
-  };
+  const { label, children, checked, onCheck } = props;
 
   return (
     <View style={styles.container}>
 
       <Pressable
-        onPress={onCheckboxPressed}
+        onPress={() => {
+          onCheck(!checked);
+        }}
       >
         <View
           style={[
             styles.checkboxContainer,
-            isChecked ? styles.checkboxContainerChecked : null
+            checked ? styles.checkboxContainerChecked : null
           ]}
         >
           {
-            isChecked && <Image style={styles.icon} source={check} />
+            checked && <Image style={styles.icon} source={check} />
           }
         </View>
       </Pressable>
