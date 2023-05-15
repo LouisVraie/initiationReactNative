@@ -9,27 +9,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 36
   },
-  innerContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 54
+  text: {
+    color: colors.blue,
+    fontSize: 14
   },
-  title: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: colors.grey
+  checkboxTextBold: {
+    fontWeight: 'bold'
   },
-  innerTitle: {
-    color: colors.orange,
-    textDecorationLine: 'underline'
-  },
-  image: {
-    width: 357,
-    height: 209,
-    marginTop: 60
-  },
-  buttonContainer: {
-    width: '80%',
+  linkContainer: {
+    flexDirection: 'row',
   }
 });
