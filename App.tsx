@@ -5,46 +5,27 @@
  * @format
  */
 
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SplashScreen from './src/screens/auth/SplashScreen';
-import SignUp from './src/screens/auth/SignUp';
-import SignIn from './src/screens/auth/SignIn';
+import React, { createContext, useEffect, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Routes from './Routes';
 
-const Stack = createNativeStackNavigator();
+export const UserContext = createContext({})
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    console.log('user', user);
+  }, [user]);
+  
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name='SplashScreen'
-            component={SplashScreen}
-            options={{headerShown: false}}
-            />
-          <Stack.Screen
-            name='SignUp'
-            component={SignUp}
-            />
-          <Stack.Screen
-            name='SignIn'
-            component={SignIn}
-            />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Routes/>
+      </UserContext.Provider>
     </SafeAreaProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  body:{
-    backgroundColor: 'white',
-    height: '100%'
-  },
-});
 
-export default App;

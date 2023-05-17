@@ -7,7 +7,7 @@ import eyeClosed from '../../assets/eye_closed.png';
 
 export default function Input(props) {
   const { label, isPassword, style } = props;
-  const [hidePass, setHidePass] = useState(false);
+  const [hidePass, setHidePass] = useState(true);
 
   const onEyePressed = () => {
     setHidePass(!hidePass);
