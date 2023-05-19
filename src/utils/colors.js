@@ -4,6 +4,8 @@ export const colors = {
   orange: '#FCA34D',
   blueGrey: '#8D9BB5',
   lightGrey: '#C5C5C5',
+  veryLightGrey: '#F5F5F5',
   smoke: '#DADADA',
-  inactiveIcon: '#999999',
+  disabled: '#999999',
+  lightGreyTitle: '#606060',
 };

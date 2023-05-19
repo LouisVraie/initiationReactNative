@@ -18,6 +18,7 @@ import Favorites from './src/screens/app/Favorites';
 import Profile from './src/screens/app/Profile';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from './src/utils/colors';
+import Product from './src/screens/app/Product';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,7 @@ function BottomTabs() {
   return (
     <Tab.Navigator
       initialRouteName='Home'
+      headerShown={false}
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -33,7 +35,7 @@ function BottomTabs() {
           elevation: 0,
         },
         tabBarActiveTintColor: colors.blue,
-        tabBarInactiveTintColor: colors.inactiveIcon
+        tabBarInactiveTintColor: colors.disabled
       }}
     >
       <Tab.Screen
@@ -88,11 +90,16 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {user ?
+        {true ?
           <>
             <Stack.Screen
               name='BottomTabs'
               component={BottomTabs}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name='Product'
+              component={Product}
               options={{ headerShown: false }}
             />
           </>

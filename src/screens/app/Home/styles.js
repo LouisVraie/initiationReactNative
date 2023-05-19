@@ -4,20 +4,10 @@ export const styles = StyleSheet.create({
   container: {
 
   },
-  titleContainer: {
-    flexDirection: 'row',
-    marginVertical: 34,
+  categoryListContainer: {
+    marginHorizontal: 10,
   },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    width: '100%'
+  productListContainer: {
+    marginHorizontal: 10,
   },
-  icon: {
-    width: 20,
-    height: 20,
-    position: 'absolute',
-    left: 20,
-  }
 });
