@@ -30,9 +30,4 @@ export const styles = StyleSheet.create({
     borderColor: colors.smoke,
     backgroundColor: colors.smoke
   },
-  googleSignIn: {
-    width: 192,
-    height: 48,
-    marginVertical: 10
-  }
 });

@@ -1,14 +1,51 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { styles } from './styles';
-import { ScrollView, Text, View } from 'react-native';
+import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
+import { products } from '../../../data/products';
+import FavoriteItem from '../../../components/FavoriteItem';
+import { UserContext } from '../../../../App';
+import Header from '../../../components/Header';
+
+const { height } = Dimensions.get('window');
 
 export default function Favorites() {
 
+  const { favorites } = useContext(UserContext);
+
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
+
+  const renderFavoritesItem = (item) => {
+    const product = item.item;
+
+    return (
+      <>
+        <FavoriteItem {...product} />
+      </>
+    );
+  };
+
+  useEffect(() => {
+    setFavoriteProducts(products.filter(data => favorites.includes(data.id)));
+  }, [favorites]);
+
   return (
-    <ScrollView>
+    <SafeAreaView>
+      <Header title='Favorites'/>
       <View style={styles.container}>
-        <Text>Favorites</Text>
+        {
+          favoriteProducts.length !== 0 ?
+            <FlatList
+              data={favoriteProducts}
+              renderItem={(item => renderFavoritesItem(item))}
+              keyExtractor={item => String(item.id)}
+              style={styles.categoryListContainer}
+              showsHorizontalScrollIndicator={false}
+              ListFooterComponent={<View style={{ height: height / 2 }}/>}
+            />
+            :
+            <Text style={styles.text}>No favorites yet.</Text>
+        }
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 }

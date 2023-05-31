@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    marginVertical: 24
+    marginVertical: 10
   },
   imageContainer: {
     borderWidth: 10,

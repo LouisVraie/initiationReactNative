@@ -1,20 +1,22 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginVertical: 34,
+    justifyContent: 'space-between',
+    marginHorizontal: 20
   },
   title: {
+    color: colors.grey,
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    width: '100%'
+  },
+  iconButton: {
   },
   icon: {
-    width: 20,
-    height: 20,
-    position: 'absolute',
-    left: 20,
+    color: colors.blue
   },
 });

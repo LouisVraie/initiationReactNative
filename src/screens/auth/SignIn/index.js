@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { styles } from './styles';
 import { Alert, ScrollView, View } from 'react-native';
 import Input from '../../../components/Input';
 import LinedText from '../../../components/LinedText';
-import { GoogleSigninButton, } from '@react-native-google-signin/google-signin';
 import Link from '../../../components/Link';
 import Button from '../../../components/Button';
 import { UserContext } from '../../../../App';
+import GoogleButton from '../../../components/GoogleButton';
 
 export default function SignIn({ navigation }) {
   const { setUser } = useContext(UserContext);
@@ -37,7 +37,7 @@ export default function SignIn({ navigation }) {
       const data = await response.json();
       if (data?.token) {
         setUser(data);
-        navigation.navigate('Home');
+        navigation.navigate('BottomTabs');
       } else {
         Alert.alert(data.message);
       }
@@ -47,6 +47,12 @@ export default function SignIn({ navigation }) {
     }
   };
 
+  useEffect(() => {
+    setValues({
+      name: 'kminchelle',
+      password: '0lelplR'
+    });
+  }, []);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -69,11 +75,7 @@ export default function SignIn({ navigation }) {
 
         <LinedText text='Or sign in with'/>
 
-        <GoogleSigninButton
-          style={styles.googleSignIn}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Dark}
-        />
+        <GoogleButton />
 
         <Link
           prefix={'Don\'t have an account?'}

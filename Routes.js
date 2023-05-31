@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,8 +19,28 @@ import Profile from './src/screens/app/Profile';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from './src/utils/colors';
 import Product from './src/screens/app/Product';
+import Settings from './src/screens/app/Settings';
+import CreateListing from './src/screens/app/CreateListing';
+import MyListing from './src/screens/app/MyListing';
+import ContactUs from './src/screens/app/ContactUs';
+import FAQ from './src/screens/app/FAQ';
+import PrivacyAndTerms from './src/screens/app/PrivacyAndTerms';
 
 const Tab = createBottomTabNavigator();
+
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
+      <Stack.Screen name='Settings' component={Settings} options={{ headerShown: false }} />
+      <Stack.Screen name='MyListing' component={MyListing} options={{ headerShown: false }} />
+      <Stack.Screen name='CreateListing' component={CreateListing} options={{ headerShown: false }} />
+      <Stack.Screen name='FAQ' component={FAQ} options={{ headerShown: false }} />
+      <Stack.Screen name='ContactUs' component={ContactUs} options={{ headerShown: false }} />
+      <Stack.Screen name='PrivacyAndTerms' component={PrivacyAndTerms} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
+};
 
 function BottomTabs() {
   return (
@@ -65,8 +85,8 @@ function BottomTabs() {
         }}
       />
       <Tab.Screen
-        name='Profile'
-        component={Profile}
+        name='ProfileStack'
+        component={ProfileStack}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Icon
@@ -87,10 +107,14 @@ export default function Routes() {
 
   const { user } = useContext(UserContext);
 
+  useEffect(() => {
+
+  }, [user]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {true ?
+        {user ?
           <>
             <Stack.Screen
               name='BottomTabs'

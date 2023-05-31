@@ -12,8 +12,8 @@ import { ScrollView, View, Text } from 'react-native';
 import { styles } from './styles';
 import Input from '../../../components/Input';
 import Checkbox from '../../../components/Checkbox';
-import { GoogleSigninButton, } from '@react-native-google-signin/google-signin';
 import LinedText from '../../../components/LinedText';
+import GoogleButton from '../../../components/GoogleButton';
 
 export default function SignUp({ navigation }) {
 
@@ -61,11 +61,7 @@ export default function SignUp({ navigation }) {
 
         <LinedText text='Or sign up with' />
 
-        <GoogleSigninButton
-          style={styles.googleSignIn}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Dark}
-        />
+        <GoogleButton />
 
         <Link
           prefix='Already have an account? '
