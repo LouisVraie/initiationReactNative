@@ -15,6 +15,7 @@ export default function App(): JSX.Element {
 
   const [user, setUser] = useState();
   const [favorites, setFavorites] = useState([]);
+  const [listing, setListing] = useState([]);
 
   useEffect(() => {
     console.log('user', user);
@@ -22,7 +23,7 @@ export default function App(): JSX.Element {
   
   return (
     <SafeAreaProvider>
-      <UserContext.Provider value={{ user, setUser, favorites, setFavorites }}>
+      <UserContext.Provider value={{ user, setUser, favorites, setFavorites, listing, setListing }}>
         <Routes/>
       </UserContext.Provider>
     </SafeAreaProvider>

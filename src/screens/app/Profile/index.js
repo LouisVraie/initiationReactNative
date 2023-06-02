@@ -8,10 +8,9 @@ import Button from '../../../components/Button';
 
 export default function Profile({ navigation }) {
 
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, listing } = useContext(UserContext);
 
   const signOut = () => {
-    console.log('test');
     setUser(null);
   };
 
@@ -27,9 +26,9 @@ export default function Profile({ navigation }) {
           <Text style={styles.userName}>{`${user.firstName} ${user.lastName}`}</Text>
           <Text style={styles.userEmail}>{user.email}</Text>
         </View>
-        <ActionCard title='My Listing' subtitle='Already have 10 listing' style={styles.actionCard} onPress={() => redirectTo('MyListing')} />
+        <ActionCard title='My Listing' subtitle={`Already have ${listing.length} listing`} style={styles.actionCard} onPress={() => redirectTo('MyListing')} />
         <ActionCard title='Settings' subtitle='Account, FAQ, Contact'style={styles.actionCard} onPress={() => redirectTo('Settings')}/>
-        <Button title='Add a new listing' buttonStyle={styles.button}/>
+        <Button title='Add a new listing' buttonStyle={styles.button} onPress={() => redirectTo('CreateListing')}/>
       </View>
     </ScrollView>
   );

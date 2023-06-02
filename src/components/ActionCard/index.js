@@ -4,8 +4,7 @@ import { styles } from './styles';
 import Card from '../Card';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function ActionCard({ title, subtitle, onPress, style }) {
-
+export default function ActionCard({ title, subtitle, onPress, style, titleStyle }) {
   return (
     <Card style={[styles.container, style]}>
       <TouchableOpacity
@@ -14,8 +13,10 @@ export default function ActionCard({ title, subtitle, onPress, style }) {
         style={styles.touchable}
       >
         <View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={[styles.title, titleStyle]}>{title}</Text>
+          { subtitle && (
+            <Text style={styles.subtitle}>{subtitle}</Text>
+          )}
         </View>
         <Icon
           name='chevron-forward'
