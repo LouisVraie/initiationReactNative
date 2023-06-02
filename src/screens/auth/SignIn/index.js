@@ -27,7 +27,6 @@ export default function SignIn({ navigation }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-
           username: values.name,
           password: values.password,
           // expiresInMins: 60, // optional
@@ -43,7 +42,7 @@ export default function SignIn({ navigation }) {
       }
 
     } catch (error) {
-      console.error('Error when signing in', error);
+      Alert.alert('Error when signing in', error);
     }
   };
 

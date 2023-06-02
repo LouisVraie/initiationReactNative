@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { styles } from './styles';
 import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { products } from '../../../data/products';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from '../../../utils/colors';
 import defaultImage from '../../../assets/default-image.png';
 import Button from '../../../components/Button';
-import { UserContext } from '../../../../App';
+import { AppData, UserContext } from '../../../../App';
+import formatPrice from '../../../utils/formatPrice';
 
 export default function Product({ route, navigation }) {
   const { favorites, setFavorites } = useContext(UserContext);
+  const { products } = useContext(AppData);
   const { productId } = route.params;
+
   const [product, setProduct] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -38,7 +40,7 @@ export default function Product({ route, navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Image style={styles.productImage} source={ product ? { uri: product.image } : defaultImage}></Image>
+        <Image style={styles.productImage} source={ product?.thumbnail ? { uri: product.thumbnail } : defaultImage}></Image>
         <Pressable style={styles.backContainer} onPress={goBack}>
           <Icon
             name='chevron-back'
@@ -50,7 +52,7 @@ export default function Product({ route, navigation }) {
         <View style={styles.descriptionContainer}>
           <View style={styles.infosContainer}>
             <Text style={styles.productTitle}>{product?.title}</Text>
-            <Text style={styles.productPrice}>{product?.price}</Text>
+            <Text style={styles.productPrice}>{formatPrice(product?.price)}</Text>
             <Text style={styles.productDescription}>{product?.description}</Text>
           </View>
           <View style={styles.buttonsContainer}>

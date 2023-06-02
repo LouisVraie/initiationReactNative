@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { styles } from './styles';
 import { Dimensions, FlatList, View } from 'react-native';
-import { products } from '../../../data/products';
-import { categories } from '../../../data/categories';
 import ProductHomeItem from '../../../components/ProductHomeItem';
 import CategoryHomeItem from '../../../components/CategoryHomeItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../../../components/Header';
+import { AppData } from '../../../../App';
+import { getCategories, getProducts } from '../../../utils/backEndCalls';
 
 const { height } = Dimensions.get('window');
 
 export default function Home() {
-
+  const { categories, setCategories, products, setProducts } = useContext(AppData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   const renderCategoryItem = (item) => {
@@ -32,6 +32,22 @@ export default function Home() {
     );
   };
 
+  useEffect(() => {
+    const getPageData = async () => {
+      const categoriesData = await getCategories();
+      const productsData = await getProducts();
+      setCategories(categoriesData);
+      setProducts(productsData.products);
+    };
+
+    getPageData();
+  }, []);
+
+  useEffect(() => {
+    if (categories !== []) {
+      setSelectedCategory(categories[0]);
+    }
+  }, [categories]);
   return (
     <SafeAreaView>
       <Header showSearch title='Find All You Need'/>
