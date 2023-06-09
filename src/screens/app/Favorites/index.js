@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { styles } from './styles';
 import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
-import { products } from '../../../data/products';
 import FavoriteItem from '../../../components/FavoriteItem';
-import { UserContext } from '../../../../App';
+import { AppData, UserContext } from '../../../../App';
 import AuthHeader from '../../../components/AuthHeader';
 
 const { height } = Dimensions.get('window');
 
 export default function Favorites() {
-
   const { favorites } = useContext(UserContext);
+  const { products } = useContext(AppData);
 
   const [favoriteProducts, setFavoriteProducts] = useState([]);
 
@@ -25,7 +24,9 @@ export default function Favorites() {
   };
 
   useEffect(() => {
-    setFavoriteProducts(products.filter(data => favorites.includes(data.id)));
+    if (products) {
+      setFavoriteProducts(products.filter(data => favorites.includes(data.id)));
+    }
   }, [favorites]);
 
   return (

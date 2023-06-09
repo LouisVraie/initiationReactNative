@@ -32,5 +32,8 @@ export const styles = StyleSheet.create({
   },
   actionCardTitle: {
     fontSize: 16
+  },
+  input: {
+    paddingVertical: 10,
   }
 });

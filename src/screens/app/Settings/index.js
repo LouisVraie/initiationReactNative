@@ -68,6 +68,7 @@ export default function Settings() {
                   label='Name'
                   inputMode='text'
                   placeholder='John Doe'
+                  style={styles.input}
                   value={name}
                   onChangeText={handleNameChange}
                 />
@@ -75,10 +76,11 @@ export default function Settings() {
                   label='Email'
                   inputMode='text'
                   placeholder='example@example.com'
+                  style={styles.input}
                   value={email}
                   onChangeText={handleEmailChange}
                 />
-                <Button title='Save' onPress={onSubmit} />
+                <Button title='Save' buttonStyle={styles.input} onPress={onSubmit} />
               </View>
             ) : (
               <View>

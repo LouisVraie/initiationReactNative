@@ -5,7 +5,7 @@ import { colors } from '../../utils/colors';
 import eye from '../../assets/eye.png';
 import eyeClosed from '../../assets/eye_closed.png';
 
-export default function Input({ label, isPassword, containerStyle, style, ...props }) {
+export default function Input({ label, isPassword, multiline = false, containerStyle, style, ...props }) {
   const [hidePass, setHidePass] = useState(true);
 
   const onEyePressed = () => {
@@ -17,10 +17,11 @@ export default function Input({ label, isPassword, containerStyle, style, ...pro
       {
         label && <Text style={styles.label}>{label}</Text>
       }
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer]}>
         <TextInput
           {...props}
-          style={[styles.input, style]}
+          multiline={multiline}
+          style={[styles.input, style, multiline ? styles.inputTextAlign : null]}
           placeholderTextColor={colors.placeholder}
           secureTextEntry={Boolean(isPassword && hidePass)}
         />

@@ -4,8 +4,10 @@ import { Image, Pressable, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { UserContext } from '../../../App';
+import defaultImage from '../../assets/default-image.png';
+import formatPrice from '../../utils/formatPrice';
 
-export default function FavoriteItem({ id, image, title, price }) {
+export default function FavoriteItem({ id, thumbnail, title, price }) {
 
   const { setFavorites } = useContext(UserContext);
 
@@ -23,22 +25,20 @@ export default function FavoriteItem({ id, image, title, price }) {
     <View style={styles.container}>
       <View style={styles.innerContainer}>
         <Pressable onPress={showProductPage}>
-          <Image style={styles.image} source={{ uri: image }} />
+          <Image style={styles.image} source={ thumbnail ? { uri: thumbnail } : defaultImage} />
         </Pressable>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
-          <Text style={styles.price}>{price}</Text>
+          <Text style={styles.price}>{formatPrice(price)}</Text>
         </View>
       </View>
-      <View>
-        <Pressable style={styles.iconButton} onPress={removeFavorite}>
-          <Icon
-            name='close-circle-outline'
-            style={styles.icon}
-            size={20}
-          />
-        </Pressable>
-      </View>
+      <Pressable style={styles.iconButton} onPress={removeFavorite}>
+        <Icon
+          name='close-circle-outline'
+          style={styles.icon}
+          size={20}
+        />
+      </Pressable>
     </View>
   );
 }

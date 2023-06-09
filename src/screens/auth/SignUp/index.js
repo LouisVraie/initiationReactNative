@@ -57,7 +57,7 @@ export default function SignUp({ navigation }) {
           <Text style={styles.text}>I agree with <Text style={styles.checkboxTextBold}>Terms</Text> & <Text style={styles.checkboxTextBold}>Privacy</Text></Text>
         </Checkbox>
 
-        <Button title='Sign Up' onPress={() => console.log('first')} />
+        <Button title='Sign Up' onPress={() => console.log('Signed up')} />
 
         <LinedText text='Or sign up with' />
 

@@ -6,5 +6,8 @@ export const styles = StyleSheet.create({
   },
   actionCard: {
     marginVertical: 13
+  },
+  button: {
+    marginBottom: 20
   }
 });

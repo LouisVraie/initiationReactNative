@@ -20,12 +20,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  inputTextAlign: {
+    textAlignVertical: 'top'
+  },
   input: {
     paddingHorizontal: 17,
     paddingVertical: 21,
     fontSize: 14,
     flex: 1,
-    opacity: 0.4
+    opacity: 0.4,
   },
   icon: {
     width: 24,

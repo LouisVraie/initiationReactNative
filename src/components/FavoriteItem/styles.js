@@ -34,5 +34,10 @@ export const styles = StyleSheet.create({
   },
   icon: {
     color: colors.blue
+  },
+  iconButton: {
+    position: 'absolute',
+    right: 0,
+    top: 10
   }
 });

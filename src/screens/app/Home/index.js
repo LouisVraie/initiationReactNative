@@ -5,12 +5,14 @@ import ProductHomeItem from '../../../components/ProductHomeItem';
 import CategoryHomeItem from '../../../components/CategoryHomeItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AuthHeader from '../../../components/AuthHeader';
-import { AppData } from '../../../../App';
+import { AppData, UserContext } from '../../../../App';
 import { getCategories, getProducts } from '../../../utils/backEndCalls';
+import getRandomFavorites from '../../../utils/getRandomFavorites';
 
 const { height } = Dimensions.get('window');
 
 export default function Home() {
+  const { setFavorites } = useContext(UserContext);
   const { categories, setCategories, products, setProducts } = useContext(AppData);
   const [selectedCategory, setSelectedCategory] = useState();
   const [selectedProducts, setSelectedProducts] = useState();
@@ -51,12 +53,18 @@ export default function Home() {
     );
   };
 
+  const getNewFavorites = (myProducts) => {
+    const randomFavorites = getRandomFavorites(myProducts, 3);
+    setFavorites(randomFavorites);
+  };
+
   useEffect(() => {
     const getPageData = async () => {
       const categoriesData = await getCategories();
       const productsData = await getProducts();
       setCategories(categoriesData);
       setProducts(productsData.products);
+      getNewFavorites(productsData.products);
     };
 
     getPageData();

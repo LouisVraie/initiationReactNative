@@ -22,12 +22,12 @@ export default function App(): JSX.Element {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    console.log('user', user);
+    // console.log('user', user);
   }, [user]);
   
   useEffect(() => {
-    console.log('categories', categories);
-    console.log('products', products);
+    // console.log('categories', categories);
+    // console.log('products', products);
   }, [categories, products]);
   return (
     <SafeAreaProvider>

@@ -3,7 +3,7 @@ import { View, Image, Pressable } from 'react-native';
 import { styles } from './styles';
 import check from '../../assets/check.png';
 
-export default function Input(props) {
+export default function Checkbox(props) {
   const { label, children, checked, onCheck } = props;
 
   return (
