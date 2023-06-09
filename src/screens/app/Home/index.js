@@ -4,7 +4,7 @@ import { Dimensions, FlatList, View } from 'react-native';
 import ProductHomeItem from '../../../components/ProductHomeItem';
 import CategoryHomeItem from '../../../components/CategoryHomeItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Header from '../../../components/Header';
+import AuthHeader from '../../../components/AuthHeader';
 import { AppData } from '../../../../App';
 import { getCategories, getProducts } from '../../../utils/backEndCalls';
 
@@ -12,7 +12,26 @@ const { height } = Dimensions.get('window');
 
 export default function Home() {
   const { categories, setCategories, products, setProducts } = useContext(AppData);
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedProducts, setSelectedProducts] = useState();
+  const [searchText, setSearchText] = useState();
+
+  const getProductOfSelectedCategory = (category) => {
+    const myCategory = category || selectedCategory;
+    setSelectedCategory(myCategory);
+
+    let categorizedProducts = [];
+    if (myCategory?.name !== 'popular') {
+      categorizedProducts = products.filter(data => data.category === myCategory.name);
+    } else {
+      categorizedProducts = products;
+    }
+
+    if (searchText && searchText !== '') {
+      categorizedProducts = categorizedProducts.filter(data => data.title.toLowerCase().includes(searchText.toLowerCase()) || data.description.toLowerCase().includes(searchText.toLowerCase()));
+    }
+    setSelectedProducts(categorizedProducts);
+  };
 
   const renderCategoryItem = (item) => {
     const category = item.item;
@@ -20,7 +39,7 @@ export default function Home() {
       <CategoryHomeItem
         {...category}
         isSelected={category === selectedCategory}
-        onPress={() => setSelectedCategory(category)}
+        onPress={() => getProductOfSelectedCategory(category)}
       />
     );
   };
@@ -48,9 +67,27 @@ export default function Home() {
       setSelectedCategory(categories[0]);
     }
   }, [categories]);
+
+  useEffect(() => {
+    if (products) {
+      getProductOfSelectedCategory();
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (searchText) {
+      getProductOfSelectedCategory();
+    }
+  }, [searchText]);
+
   return (
     <SafeAreaView>
-      <Header showSearch title='Find All You Need'/>
+      <AuthHeader
+        title='Find All You Need'
+        showSearch
+        keyword={searchText}
+        setKeyword={setSearchText}
+      />
       <View style={styles.container}>
         {/* Icon menu */}
         <FlatList
@@ -65,13 +102,13 @@ export default function Home() {
 
         {/* Products list */}
         <FlatList
-          data={products}
+          data={selectedProducts}
           renderItem={(item => renderProductItem(item))}
           keyExtractor={item => String(item.id)}
           style={styles.productListContainer}
           showsHorizontalScrollIndicator={false}
           numColumns={2}
-          ListFooterComponent={<View style={{ height: height / 1.5 }}/>}
+          ListFooterComponent={<View style={{ height: height }}/>}
         />
       </View>
     </SafeAreaView>

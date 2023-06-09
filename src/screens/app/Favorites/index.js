@@ -4,7 +4,7 @@ import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { products } from '../../../data/products';
 import FavoriteItem from '../../../components/FavoriteItem';
 import { UserContext } from '../../../../App';
-import Header from '../../../components/Header';
+import AuthHeader from '../../../components/AuthHeader';
 
 const { height } = Dimensions.get('window');
 
@@ -30,7 +30,7 @@ export default function Favorites() {
 
   return (
     <SafeAreaView>
-      <Header title='Favorites'/>
+      <AuthHeader title='Favorites'/>
       <View style={styles.container}>
         {
           favoriteProducts.length !== 0 ?

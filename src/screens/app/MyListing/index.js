@@ -1,13 +1,13 @@
 import React from 'react';
 import { styles } from './styles';
 import { ScrollView, View } from 'react-native';
-import Header from '../../../components/Header';
+import AuthHeader from '../../../components/AuthHeader';
 
 export default function MyListing() {
 
   return (
     <ScrollView>
-      <Header title='My Listing'/>
+      <AuthHeader title='My Listing'/>
       <View style={styles.container}>
       </View>
     </ScrollView>

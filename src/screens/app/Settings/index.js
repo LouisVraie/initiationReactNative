@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { styles } from './styles';
 import { Alert, Image, Pressable, ScrollView, Text, View } from 'react-native';
 import ActionCard from '../../../components/ActionCard';
-import Header from '../../../components/Header';
+import AuthHeader from '../../../components/AuthHeader';
 import { UserContext } from '../../../../App';
 import InfoCard from '../../../components/InfoCard';
 import editIcon from '../../../assets/edit.png';
@@ -43,7 +43,7 @@ export default function Settings() {
 
   return (
     <ScrollView>
-      <Header title='Settings' />
+      <AuthHeader title='Settings' />
       <View style={styles.container}>
         <View style={styles.innerContainer}>
           <View style={[styles.titleContainer, styles.titleWithIcon]}>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { styles } from './styles';
 import { ScrollView, Text, View } from 'react-native';
 import ActionCard from '../../../components/ActionCard';
-import Header from '../../../components/Header';
+import AuthHeader from '../../../components/AuthHeader';
 import { UserContext } from '../../../../App';
 import Button from '../../../components/Button';
 
@@ -20,7 +20,7 @@ export default function Profile({ navigation }) {
 
   return (
     <ScrollView>
-      <Header title='Profile' showLogout onLogout={signOut}/>
+      <AuthHeader title='Profile' showLogout onLogout={signOut}/>
       <View style={styles.container}>
         <View style={styles.userDataContainer}>
           <Text style={styles.userName}>{`${user.firstName} ${user.lastName}`}</Text>

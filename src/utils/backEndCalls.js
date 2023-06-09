@@ -23,13 +23,20 @@ const getCategories = async () => {
 
     const data = await response.json();
 
-    const dataWithId = data.map((value, index) => (
+    const dataWithId = [
       {
-        id: index + 1,
-        title: `${value.charAt(0).toUpperCase()}${value.slice(1)}`,
-        name: value
-      }
-    ));
+        id: 0,
+        title: 'Popular',
+        name: 'popular'
+      },
+      ...data.map((value, index) => (
+        {
+          id: index + 1,
+          title: `${value.charAt(0).toUpperCase()}${value.slice(1)}`,
+          name: value
+        }
+      ))
+    ];
     return dataWithId;
 
   } catch (error) {
